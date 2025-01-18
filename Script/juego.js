@@ -72,9 +72,7 @@ window.addEventListener("DOMContentLoaded", function() {
     crearTablero(tablero);
 
     const dado=document.querySelector(".dado");
-
-    let movimientosDado=['']
-
+    // Añadir animación aleatoria al dado
     dado.addEventListener("click", function() {
         turno++;
         turnoJugador(turno);

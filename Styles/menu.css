@@ -155,6 +155,7 @@
 .titulo-minotaurus {
     position: absolute;
     width: 600px;
+    width: 45vw;
     filter: drop-shadow(0px 0px 10px #000);
     top: 100px;
     transform: translateY(-400px);
@@ -185,7 +186,9 @@
     max-width: 750px;
     height: 0%;
     background-color:#ede6d6;
-    color: #1d1d1d;
+    background-image: url(../Images/fondoInstrucciones2.jpg);
+    background-size: cover;
+    color: #311F14;
     z-index: 1000;
     transition: 0.4s ease;
     font-family: "MedievalSharp";
@@ -197,11 +200,11 @@
 }
 .div-instrucciones::-webkit-scrollbar {
     width: 10px;
-    background-color: #ede6d6;
+    background-color: transparent;
     height: 100%;
 }
 .div-instrucciones::-webkit-scrollbar-thumb {
-    background-color: #d8d1c1;
+    background-color: #afa787;
 }
 
 .div-instrucciones.aparecer-div {
