@@ -11,10 +11,8 @@ window.addEventListener("DOMContentLoaded", function() {
     function turnoJugador(turno) {
         if(turno%2 == 0) {
             textoTurno.textContent='TURNO DEL JUGADOR ROJO';
-            textoTurno.style.backgroundColor='rgb(204, 50, 50)';
         } else if(turno%2 != 0) {
             textoTurno.textContent='TURNO DEL JUGADOR AZUL';
-            textoTurno.style.backgroundColor='rgb(39, 141, 201)';
         }
     }
 
