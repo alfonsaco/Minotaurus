@@ -102,7 +102,7 @@
     bottom: 58%;
 }
 .instrucciones {
-    bottom: 45%;
+    bottom: 47%;
 }
 
 /* Colores para el botón instrucciones */
@@ -240,7 +240,8 @@
     text-align: center;
     font-size: 1.8em;
     text-transform: uppercase;
-    font-family: 'Vogue';
+    font-family: 'Poppins';
+    font-weight: normal;
 }
 
 /* Imágenes de las intrucciones */
@@ -280,4 +281,21 @@
 /* Instrucciones Minotauro */
 .div-instrucciones-minotauro {
     margin-bottom: 45px;
+}
+
+
+/* ALFONSACO */
+.alfonsaco {
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+    z-index: 2000;
+}
+.alfonsaco a {
+    text-decoration: none;
+    color: #FFF;
+    font-size: 1.3em;
+    font-family: 'Poppins';
+    text-shadow: 0px 1px 0px #4d4d4d, 0px 2px 0px #2c2c2c;
+    filter: drop-shadow(0px 0px 1px #FFF);
 }

@@ -1,3 +1,21 @@
+@media screen and (max-width: 1500px) {
+    /* TÍTULO MENÚ */
+    .titulo-minotaurus {
+        width: 60vw;
+    }
+}
+@media screen and (max-width: 1100px) {
+    /* TÍTULO MENÚ */
+    .titulo-minotaurus {
+        width: 75vw;
+    }
+}
+@media screen and (max-width: 800px) {
+    /* TÍTULO MENÚ */
+    .titulo-minotaurus {
+        width: 85vw;
+    }
+}
 
 @media screen and (max-width: 600px) {
     /* DIV INSTRUCCIONES */
