@@ -20,7 +20,7 @@ body {
 /* Turno de jugador */
 .turno {
     position: absolute;
-    bottom: 90%;
+    top: 40px;
     color: hsl(0, 0%, 100%);
     background-color: rgb(204, 50, 50);
     background-image: url(../Images/texturaMadera2.jpg);
@@ -242,7 +242,7 @@ body {
 
 /* TABLERO Y SUS ELEMENTOS */
 #tablero {
-    height: 70%;
+    width: 30%;
     transform: translateY(10px);
     background-color: #000;
     background-size: cover;
@@ -272,8 +272,8 @@ body {
     border: 0.5px solid #255323;
 }
 .spawn {
-    background-color: #fff;
-    border: 0.5px solid #ccc;
+    background-color: #cacaca;
+    border: 0.5px solid #858585;
 }
 
 /* Jugadores */
@@ -296,7 +296,7 @@ body {
     position: absolute;
     width: 30px;
     height: 30px;
-    border-bottom: 4px solid #1a1a1a;
+    border-bottom: 4px solid #313131;
     background-color: #000;
     top: calc(50% - 15px);
     left: calc(50% - 15px);

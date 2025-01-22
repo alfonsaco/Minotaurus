@@ -1,0 +1,9 @@
+
+@media screen and (max-width: 600px) {
+    /* DIV INSTRUCCIONES */
+    .imagenes-detalladas {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        row-gap: 15px;
+    }
+}

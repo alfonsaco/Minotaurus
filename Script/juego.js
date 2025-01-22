@@ -63,6 +63,19 @@ window.addEventListener("DOMContentLoaded", function() {
                 divTablero.appendChild(divCelda);
             });
         });
+
+        // Posición de los jugadores
+        const jugRojo=document.getElementById("jugRojo");
+        const jugAzul=document.getElementById("jugAzul");
+
+        let anchuraTablero=tablero.offsetWidth;
+        let alturaTablero=tablero.offsetHeight;
+
+        console.log(anchuraTablero);
+        console.log(alturaTablero);
+
+        jugAzul.style.transform=`translate()`;
+        jugRojo.style.transform=`translate()`;
     }
 
     // Se define el turno al comenzar y se crea el tablero
