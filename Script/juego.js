@@ -2,8 +2,6 @@ window.addEventListener("DOMContentLoaded", function() {
     const textoTurno=document.querySelector(".turno");
     let turno=Math.round(Math.random()*1);
 
-
-
     // Se posicionan las fichasa en la esquina superior izquierda, e inferior derecha
     let posicionRojo={x: 1, y: 1};
     let posicionAzul={x: 19, y: 19};
@@ -57,6 +55,40 @@ window.addEventListener("DOMContentLoaded", function() {
         dado.classList.add(`dado-${random}`);
     });
 
+    window.addEventListener("keydown", function(e) {
+        if(e.key == "ArrowLeft") {
+            posicionAzul.x--;
+            posicionarJugadores();
+        }
+        if(e.key == "ArrowUp") {
+            posicionAzul.y--;
+            posicionarJugadores();
+        }
+        if(e.key == "ArrowRight") {
+            posicionAzul.x++;
+            posicionarJugadores();
+        }
+        if(e.key == "ArrowDown") {
+            posicionAzul.y++;
+            posicionarJugadores();
+        }
+        if(e.key == "a" || e.key == "A") {
+            posicionRojo.x--;
+            posicionarJugadores();
+        }
+        if(e.key == "w" || e.key == "W") {
+            posicionRojo.y--;
+            posicionarJugadores();
+        }
+        if(e.key == "s" || e.key == "S") {
+            posicionRojo.y++;
+            posicionarJugadores();
+        }
+        if(e.key == "d" || e.key == "D") {
+            posicionRojo.x++;
+            posicionarJugadores();
+        }
+    });
 
 
 

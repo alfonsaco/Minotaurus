@@ -285,14 +285,16 @@ body {
     position: absolute;
 }
 #jugRojo {
-    background-color: red;
-    border-bottom: 4px solid brown;
-
+    background-color: rgb(197, 10, 10);
+    border-bottom: 4px solid rgb(122, 23, 23);
+    filter: drop-shadow(2px 2px 6px #00000094);
+    transition: 0.2s ease;
 }
 #jugAzul {
-    background-color: rgb(0, 218, 218);
-    border-bottom: 4px solid rgb(26, 156, 156);
+    background-color: rgb(7, 180, 180);
+    border-bottom: 4px solid rgb(15, 110, 110);
     filter: drop-shadow(2px 2px 6px #00000094);
+    transition: 0.2s ease;
 }
 
 /* Minotaurus */
