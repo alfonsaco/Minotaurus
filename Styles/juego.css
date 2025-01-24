@@ -258,11 +258,10 @@ body {
 .celda {
     width: 100%;
     height: 100%;
-    cursor: pointer;
 }
 .muro {
     background-color: #C1D621;
-    border: 0.5px solid #98a81a;
+    /*border: 0.5px solid #98a81a;*/
     z-index: 50;
 }
 .muro2 {

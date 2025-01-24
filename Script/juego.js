@@ -2,9 +2,18 @@ window.addEventListener("DOMContentLoaded", function() {
     const textoTurno=document.querySelector(".turno");
     let turno=Math.round(Math.random()*1);
 
-    // Se posicionan las fichasa en la esquina superior izquierda, e inferior derecha
+    // Posiciones de las fichas
     let posicionRojo={x: 1, y: 1};
     let posicionAzul={x: 19, y: 19};
+    let posicionMinotauro={x: 10, x: 10};
+
+    // Variables para la mecánica de juego
+    let nombreTurnoJugador="rojo";
+    // Cuando se completen los movimeintos que el dado ha dado al jugador, se pondrá en True, y el siguiente jugador podrá tirar el dado
+    let puedeTirar=true;
+    // Para especificar el tipo y el número de pasos que puede hacer el jugador
+    let tipoTirada='';
+    let numeroPasos=0;
 
     // Tablero 21x21
     const tablero=[
@@ -34,6 +43,7 @@ window.addEventListener("DOMContentLoaded", function() {
     const divTablero=document.getElementById("tablero");
     const jugRojo=document.getElementById("jugRojo");
     const jugAzul=document.getElementById("jugAzul");
+    const minotauro=document.getElementById("minotauro");
     
 
     // Se define el turno al comenzar y se crea el tablero
@@ -43,16 +53,21 @@ window.addEventListener("DOMContentLoaded", function() {
     const dado=document.querySelector(".dado");
     // Añadir animación aleatoria al dado
     dado.addEventListener("click", function() {
-        turno++;
-        turnoJugador(turno);
-        let random=(Math.round(1+Math.random()*5));
+        if(puedeTirar) {
+            turno++;
+            turnoJugador(turno);
+            let random=(Math.round(1+Math.random()*5));
+    
+            for (let i=1; i<=6; i++) {
+                dado.classList.remove(`dado-${i}`);
+            }
+            void dado.offsetWidth;
+    
+            dado.classList.add(`dado-${random}`);
 
-        for (let i=1; i<=6; i++) {
-            dado.classList.remove(`dado-${i}`);
+            tipoTirada=obtenerTipoTirada(random);
+            console.log(tipoTirada);
         }
-        void dado.offsetWidth;
-
-        dado.classList.add(`dado-${random}`);
     });
 
     // Agregar movimiento a los jugadores con las teclas
@@ -157,10 +172,45 @@ window.addEventListener("DOMContentLoaded", function() {
         jugRojo.style.left=`${posicionRojo.x * tamañoCelda.ancho}px`;
         jugRojo.style.top=`${posicionRojo.y * tamañoCelda.alto}px`;
 
+        // Posicionar el Minotauro
+        minotauro.style.left=`${posicionMinotauro.x * posicionMinotauro.ancho}px`;
+        minotauro.style.top=`${posicionMinotauro.y * posicionMinotauro.alto}px`;
+
         // Cambiamos el tamaño de los jugadores, para que tengan el mismo tamaño que las celdas
         jugAzul.style.width=`${tamañoCelda.ancho}px`;
         jugAzul.style.height=`${tamañoCelda.alto}px`;
+
         jugRojo.style.width=`${tamañoCelda.ancho}px`;
         jugRojo.style.height=`${tamañoCelda.alto}px`;
+
+        minotauro.style.width=`${tamañoCelda.ancho}px`;
+        minotauro.style.height=`${tamañoCelda.alto}px`
+    }
+
+    function obtenerTipoTirada(numeroRandom) {
+        let tipo="";
+
+        switch(numeroRandom) {
+            case 1:
+                tipo="tres";
+                break;
+            case 2:
+                tipo="tres";
+                break;
+            case 3:
+                tipo="tres";
+                break;
+            case 4:
+                tipo="tres";
+                break;
+            case 5:
+                tipo="tres";
+                break;
+            case 6:
+                tipo="tres";
+                break;
+        }
+
+        return tipo;
     }
 });
