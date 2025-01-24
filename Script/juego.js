@@ -55,6 +55,7 @@ window.addEventListener("DOMContentLoaded", function() {
         dado.classList.add(`dado-${random}`);
     });
 
+    // Agregar movimiento a los jugadores con las teclas
     window.addEventListener("keydown", function(e) {
         if(e.key == "ArrowLeft") {
             posicionAzul.x--;
@@ -90,6 +91,11 @@ window.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    // Con este evento se evita que se produzcan problemas al cambiar el tamaño de la ventana, ya que hasta que no se mueve un jugador,  
+    // no se coloan las fichas en su lugar correspondiente. Esto lo hace de forma automática
+    window.addEventListener("resize", function() {
+        posicionarJugadores();
+    });
 
 
     /**
