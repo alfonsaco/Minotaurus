@@ -5,10 +5,10 @@ window.addEventListener("DOMContentLoaded", function() {
     // Posiciones de las fichas
     let posicionRojo={x: 1, y: 1};
     let posicionAzul={x: 19, y: 19};
-    let posicionMinotauro={x: 10, x: 10};
+    let posicionMinotauro={x: 10, y: 10};
 
     // Variables para la mecánica de juego
-    let nombreTurnoJugador="rojo";
+    let nombreTurnoJugador="ROJO";
     // Cuando se completen los movimeintos que el dado ha dado al jugador, se pondrá en True, y el siguiente jugador podrá tirar el dado
     let puedeTirar=true;
     // Para especificar el tipo y el número de pasos que puede hacer el jugador
@@ -55,9 +55,12 @@ window.addEventListener("DOMContentLoaded", function() {
     dado.addEventListener("click", function() {
         if(puedeTirar) {
             turno++;
+
+            // Obtenemos una tirada aleatoria para el dado
             turnoJugador(turno);
             let random=(Math.round(1+Math.random()*5));
     
+            // Quitamos y ponemos el estilo, para repetir la animación
             for (let i=1; i<=6; i++) {
                 dado.classList.remove(`dado-${i}`);
             }
@@ -66,43 +69,104 @@ window.addEventListener("DOMContentLoaded", function() {
             dado.classList.add(`dado-${random}`);
 
             tipoTirada=obtenerTipoTirada(random);
-            console.log(tipoTirada);
+            console.log(numeroPasos);
+            puedeTirar=false;
         }
     });
 
     // Agregar movimiento a los jugadores con las teclas
-    window.addEventListener("keydown", function(e) {
-        if(e.key == "ArrowLeft") {
-            posicionAzul.x--;
-            posicionarJugadores();
+    window.addEventListener("keydown", function(e) {        
+        // MOVER A LOS JUGADORES
+        if(numeroPasos > 0) {
+            if(tipoTirada != "minotauro") {
+                // TURNO JUGADOR AZUL
+                if(nombreTurnoJugador == "AZUL") {
+                    if(e.key == "ArrowLeft") {
+                        posicionAzul.x--;
+                        posicionarJugadores();
+                    }
+                    if(e.key == "ArrowUp") {
+                        posicionAzul.y--;
+                        posicionarJugadores();
+                    }
+                    if(e.key == "ArrowRight") {
+                        posicionAzul.x++;
+                        posicionarJugadores();
+                    }
+                    if(e.key == "ArrowDown") {
+                        posicionAzul.y++;
+                        posicionarJugadores();
+                    }
+
+                    numeroPasos--;
+
+                } else if(nombreTurnoJugador == "ROJO") {
+                    if(e.key == "a" || e.key == "A") {
+                        posicionRojo.x--;
+                        posicionarJugadores();
+                    }
+                    if(e.key == "w" || e.key == "W") {
+                        posicionRojo.y--;
+                        posicionarJugadores();
+                    }
+                    if(e.key == "s" || e.key == "S") {
+                        posicionRojo.y++;
+                        posicionarJugadores();
+                    }
+                    if(e.key == "d" || e.key == "D") {
+                        posicionRojo.x++;
+                        posicionarJugadores();
+                    }
+
+                    numeroPasos--;
+                }
+    
+            // MOVER AL MINOTAURO
+            } else {
+                if(nombreTurnoJugador = "ROJO") {
+                    if(e.key == "a" || e.key == "A") {
+                        posicionMinotauro.x--;
+                        posicionarJugadores();
+                    }
+                    if(e.key == "w" || e.key == "W") {
+                        posicionMinotauro.y--;
+                        posicionarJugadores();
+                    }
+                    if(e.key == "s" || e.key == "S") {
+                        posicionMinotauro.y++;
+                        posicionarJugadores();
+                    }
+                    if(e.key == "d" || e.key == "D") {
+                        posicionMinotauro.x++;
+                        posicionarJugadores();
+                    }
+                } else {
+                    if(e.key == "ArrowLeft") {
+                        posicionMinotauro.x--;
+                        posicionarJugadores();
+                    }
+                    if(e.key == "ArrowUp") {
+                        posicionMinotauro.y--;
+                        posicionarJugadores();
+                    }
+                    if(e.key == "ArrowDown") {
+                        posicionMinotauro.y++;
+                        posicionarJugadores();
+                    }
+                    if(e.key == "ArrowRight") {
+                        posicionMinotauro.x++;
+                        posicionarJugadores();
+                    }
+                }
+                
+                numeroPasos--;
+
+                verificarMinotauroComeFicha();
+            }
         }
-        if(e.key == "ArrowUp") {
-            posicionAzul.y--;
-            posicionarJugadores();
-        }
-        if(e.key == "ArrowRight") {
-            posicionAzul.x++;
-            posicionarJugadores();
-        }
-        if(e.key == "ArrowDown") {
-            posicionAzul.y++;
-            posicionarJugadores();
-        }
-        if(e.key == "a" || e.key == "A") {
-            posicionRojo.x--;
-            posicionarJugadores();
-        }
-        if(e.key == "w" || e.key == "W") {
-            posicionRojo.y--;
-            posicionarJugadores();
-        }
-        if(e.key == "s" || e.key == "S") {
-            posicionRojo.y++;
-            posicionarJugadores();
-        }
-        if(e.key == "d" || e.key == "D") {
-            posicionRojo.x++;
-            posicionarJugadores();
+        
+        if(numeroPasos == 0) {
+            puedeTirar=true;
         }
     });
 
@@ -121,10 +185,27 @@ window.addEventListener("DOMContentLoaded", function() {
     */
     function turnoJugador(turno) {
         if (turno % 2 == 0) {
-            textoTurno.textContent = 'TURNO DEL JUGADOR ROJO';
+            nombreTurnoJugador="ROJO";
         } else if (turno % 2 != 0) {
-            textoTurno.textContent = 'TURNO DEL JUGADOR AZUL';
+            nombreTurnoJugador="AZUL";
         }
+
+        textoTurno.textContent=`TURNO DEL JUGADOR ${nombreTurnoJugador}`;
+    }
+
+    function verificarMinotauroComeFicha() {
+        if(posicionMinotauro.x == posicionAzul.x && posicionMinotauro.y == posicionAzul.y) {
+            numeroPasos=0;
+            posicionAzul={x: 19, y: 19};
+            posicionMinotauro={x: 10, y: 10};
+
+        } else if(posicionMinotauro.x == posicionRojo.x && posicionMinotauro.y == posicionRojo.y) {
+            numeroPasos=0;            
+            posicionRojo={x: 1, y: 1};
+            posicionMinotauro={x: 10, y: 10};
+        }
+
+        posicionarJugadores();
     }
 
     function crearTablero(tablero) {
@@ -173,8 +254,8 @@ window.addEventListener("DOMContentLoaded", function() {
         jugRojo.style.top=`${posicionRojo.y * tamañoCelda.alto}px`;
 
         // Posicionar el Minotauro
-        minotauro.style.left=`${posicionMinotauro.x * posicionMinotauro.ancho}px`;
-        minotauro.style.top=`${posicionMinotauro.y * posicionMinotauro.alto}px`;
+        minotauro.style.left=`${posicionMinotauro.x * tamañoCelda.ancho}px`;
+        minotauro.style.top=`${posicionMinotauro.y * tamañoCelda.alto}px`;
 
         // Cambiamos el tamaño de los jugadores, para que tengan el mismo tamaño que las celdas
         jugAzul.style.width=`${tamañoCelda.ancho}px`;
@@ -192,22 +273,24 @@ window.addEventListener("DOMContentLoaded", function() {
 
         switch(numeroRandom) {
             case 1:
-                tipo="tres";
+                tipo="minotauro";
+                numeroPasos=8;
                 break;
             case 2:
-                tipo="tres";
+                tipo="minotauro";
+                numeroPasos=8;
                 break;
             case 3:
-                tipo="tres";
+                numeroPasos=3;
                 break;
             case 4:
-                tipo="tres";
+                numeroPasos=4;
                 break;
             case 5:
-                tipo="tres";
+                numeroPasos=5;
                 break;
             case 6:
-                tipo="tres";
+                numeroPasos=6;
                 break;
         }
 
