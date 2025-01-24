@@ -140,6 +140,8 @@ window.addEventListener("DOMContentLoaded", function() {
                         posicionMinotauro.x++;
                         posicionarJugadores();
                     }
+                    numeroPasos--;
+
                 } else {
                     if(e.key == "ArrowLeft") {
                         posicionMinotauro.x--;
@@ -156,10 +158,9 @@ window.addEventListener("DOMContentLoaded", function() {
                     if(e.key == "ArrowRight") {
                         posicionMinotauro.x++;
                         posicionarJugadores();
-                    }
-                }
-                
-                numeroPasos--;
+                    }                
+                    numeroPasos--;
+                }                                
 
                 verificarMinotauroComeFicha();
             }
@@ -234,12 +235,11 @@ window.addEventListener("DOMContentLoaded", function() {
     }
 
     function obtenerTamañoCelda() {
-        const celda=divTablero.querySelector(".celda");
-        // Esto se usa para alto y ancho, ya que ocupa lo mismo
-        const anchoCelda=celda.offsetWidth;
-        const altoCelda=celda.offsetHeight;
+        const anchoTablero=divTablero.offsetWidth;
+        const numCeldasPorFila=tablero.length;
+        const anchoCelda=anchoTablero / numCeldasPorFila;
 
-        return {ancho: anchoCelda, alto: altoCelda};
+        return {ancho: anchoCelda, alto: anchoCelda};
     }
 
     function posicionarJugadores() {
@@ -265,7 +265,7 @@ window.addEventListener("DOMContentLoaded", function() {
         jugRojo.style.height=`${tamañoCelda.alto}px`;
 
         minotauro.style.width=`${tamañoCelda.ancho}px`;
-        minotauro.style.height=`${tamañoCelda.alto}px`
+        minotauro.style.height=`${tamañoCelda.alto}px`;
     }
 
     function obtenerTipoTirada(numeroRandom) {
