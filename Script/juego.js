@@ -150,43 +150,61 @@ window.addEventListener("DOMContentLoaded", function() {
             // MOVER AL MINOTAURO
             } else {
                 if(nombreTurnoJugador === "ROJO") {
+                    let nuevaX=posicionMinotauro.x;
+                    let nuevaY=posicionMinotauro.y;
+
                     if(e.key == "a" || e.key == "A") {
-                        posicionMinotauro.x--;
-                        posicionarJugadores();
+                        nuevaX--;
                     }
                     if(e.key == "w" || e.key == "W") {
-                        posicionMinotauro.y--;
-                        posicionarJugadores();
+                        nuevaY--;
                     }
                     if(e.key == "s" || e.key == "S") {
-                        posicionMinotauro.y++;
-                        posicionarJugadores();
+                        nuevaY++;
                     }
                     if(e.key == "d" || e.key == "D") {
-                        posicionMinotauro.x++;
-                        posicionarJugadores();
+                        nuevaX++;
                     }
-                    numeroPasos--;
+
+                    if(esMovimientoValido(nuevaX, nuevaY)) {
+                        console.log("movimiento válido");
+                        posicionMinotauro.x=nuevaX;
+                        posicionMinotauro.y=nuevaY;
+
+                        posicionarJugadores();
+                        numeroPasos--;
+                    } else {
+                        console.log("movimiento no válido");
+                    }       
 
                 } else {
+                    let nuevaX=posicionMinotauro.x;
+                    let nuevaY=posicionMinotauro.y;
+
                     if(e.key === "ArrowLeft") {
-                        posicionMinotauro.x--;
-                        posicionarJugadores();
+                        nuevaX--;
                     }
                     if(e.key == "ArrowUp") {
-                        posicionMinotauro.y--;
-                        posicionarJugadores();
+                        nuevaY--;
                     }
                     if(e.key == "ArrowDown") {
-                        posicionMinotauro.y++;
-                        posicionarJugadores();
+                        nuevaY++;
                     }
                     if(e.key == "ArrowRight") {
-                        posicionMinotauro.x++;
-                        posicionarJugadores();
+                        nuevaX++;
                     }                
-                    numeroPasos--;
-                }                                
+                    
+                    if(esMovimientoValido(nuevaX, nuevaY)) {
+                        console.log("movimiento válido");
+                        posicionMinotauro.x=nuevaX;
+                        posicionMinotauro.y=nuevaY;
+
+                        posicionarJugadores();
+                        numeroPasos--;
+                    } else {
+                        console.log("movimiento no válido");
+                    }       
+                }                                      
 
                 verificarMinotauroComeFicha();
             }
@@ -248,6 +266,8 @@ window.addEventListener("DOMContentLoaded", function() {
     // Función para verificar que no se mueva la ficha a un muro
     function esMovimientoValido(x, y) {
         // Límites del tablero
+        console.log(tablero[x][y]);
+
         if(x < 1 || x > tablero.length-2 || y < 1 || y > tablero.length-2) {
             return false;
         }
@@ -326,23 +346,23 @@ window.addEventListener("DOMContentLoaded", function() {
         switch(numeroRandom) {
             case 1:
                 tipo="minotauro";
-                numeroPasos=8;
+                numeroPasos=80;
                 break;
             case 2:
                 tipo="minotauro";
-                numeroPasos=8;
+                numeroPasos=80;
                 break;
             case 3:
-                numeroPasos=3;
+                numeroPasos=30;
                 break;
             case 4:
-                numeroPasos=4;
+                numeroPasos=40;
                 break;
             case 5:
-                numeroPasos=5;
+                numeroPasos=50;
                 break;
             case 6:
-                numeroPasos=6;
+                numeroPasos=60;
                 break;
         }
 
