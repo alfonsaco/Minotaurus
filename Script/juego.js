@@ -104,6 +104,11 @@ window.addEventListener("DOMContentLoaded", function() {
 
                         posicionarJugadores();
                         numeroPasos--;
+
+                        if(verificarVictoria(nuevaX, nuevaY)) {
+                            console.log("EL JUGADOR AZUL HA GANADO");
+                        }
+
                     } else {
                         console.log("movimiento no válido");
                     }                    
@@ -132,6 +137,11 @@ window.addEventListener("DOMContentLoaded", function() {
 
                         posicionarJugadores();
                         numeroPasos--;
+
+                        if(verificarVictoria(nuevaX, nuevaY)) {
+                            console.log("EL JUGADOR ROJO HA GANADO");
+                        }
+
                     } else {
                         console.log("movimiento no válido");
                     }                      
@@ -225,10 +235,26 @@ window.addEventListener("DOMContentLoaded", function() {
         posicionarJugadores();
     }
 
+    function verificarVictoria(x, y) {
+        const celda=tablero[x][y];
+
+        if(celda === 3) {
+            return true;
+        }
+
+        return false;
+    }
+
     // Función para verificar que no se mueva la ficha a un muro
     function esMovimientoValido(x, y) {
         // Límites del tablero
         if(x < 1 || x > tablero.length-2 || y < 1 || y > tablero.length-2) {
+            return false;
+        }
+
+        // Verificar muros
+        const celda=tablero[x][y];
+        if(celda === 1 || celda === 2) {
             return false;
         }
 
