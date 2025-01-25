@@ -15,7 +15,7 @@ window.addEventListener("DOMContentLoaded", function() {
     }
 
     // Música del menú
-    const menuTheme=new Audio("../Audio/Menu-Theme.mp3");
+    const menuTheme=new Audio("Minotaurus/Audio/Menu-Theme.mp3");
     menuTheme.loop=true;
     menuTheme.play();
     let volumen=0.8;

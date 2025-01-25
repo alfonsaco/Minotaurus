@@ -28,7 +28,8 @@
 
 /**/ 
 #div-ajustes {
-    background-color: rgba(255, 68, 0, 0.404);
+    background-color: #F27405;
+    border-radius: 5px;
     width: 340px;
     height: 400px;
     position: absolute;

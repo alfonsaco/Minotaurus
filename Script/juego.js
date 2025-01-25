@@ -266,14 +266,14 @@ window.addEventListener("DOMContentLoaded", function() {
     // Función para verificar que no se mueva la ficha a un muro
     function esMovimientoValido(x, y) {
         // Límites del tablero
-        console.log(tablero[x][y]);
+        console.log(tablero[y][x]);
 
         if(x < 1 || x > tablero.length-2 || y < 1 || y > tablero.length-2) {
             return false;
         }
 
         // Verificar muros
-        const celda=tablero[x][y];
+        const celda=tablero[y][x];
         if(celda === 1 || celda === 2) {
             return false;
         }
@@ -346,23 +346,23 @@ window.addEventListener("DOMContentLoaded", function() {
         switch(numeroRandom) {
             case 1:
                 tipo="minotauro";
-                numeroPasos=80;
+                numeroPasos=8;
                 break;
             case 2:
                 tipo="minotauro";
-                numeroPasos=80;
+                numeroPasos=8;
                 break;
             case 3:
-                numeroPasos=30;
+                numeroPasos=3;
                 break;
             case 4:
-                numeroPasos=40;
+                numeroPasos=4;
                 break;
             case 5:
-                numeroPasos=50;
+                numeroPasos=5;
                 break;
             case 6:
-                numeroPasos=60;
+                numeroPasos=6;
                 break;
         }
 

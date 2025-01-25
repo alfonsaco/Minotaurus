@@ -253,6 +253,7 @@ body {
     display: grid;
     grid-template-columns: repeat(21, 1fr);
     border-bottom: #98a81a solid 5px;
+    border-bottom: 10px solid #377904;
     box-shadow: 5px 20px 15px #00000081;
 }
 .celda {
@@ -262,16 +263,22 @@ body {
 }
 .muro {
     background-color: #C1D621;
+    background-image: url(../Images/texturaLegoMuro.png);
+    background-size: cover;
     /*border: 0.5px solid #98a81a;*/
     z-index: 50;
 }
 .muro2 {
-    border-bottom: #8a9917 solid 5px;
+    /*border-bottom: #8a9917 solid 5px;*/
+    border-bottom: 5px solid #377904;
     z-index: 50;
 }
 .vacio {
     background-color: #326F2F;
+    background-image: url(../Images/texturaLegoCesped.png);
+    background-size: cover;
     border: 0.5px solid #255323;
+    border: 0;
 }
 .spawn {
     background-color: #cacaca;
