@@ -80,50 +80,66 @@ window.addEventListener("DOMContentLoaded", function() {
         if(numeroPasos > 0) {
             if(tipoTirada != "minotauro") {
                 // TURNO JUGADOR AZUL
-                if(nombreTurnoJugador == "AZUL") {
+                if(nombreTurnoJugador === "AZUL") {
+                    let nuevaX=posicionAzul.x;
+                    let nuevaY=posicionAzul.y;
+
                     if(e.key == "ArrowLeft") {
-                        posicionAzul.x--;
-                        posicionarJugadores();
+                        nuevaX--;
                     }
                     if(e.key == "ArrowUp") {
-                        posicionAzul.y--;
-                        posicionarJugadores();
+                        nuevaY--;
                     }
                     if(e.key == "ArrowRight") {
-                        posicionAzul.x++;
-                        posicionarJugadores();
+                        nuevaX++;
                     }
                     if(e.key == "ArrowDown") {
-                        posicionAzul.y++;
-                        posicionarJugadores();
+                        nuevaY++;
                     }
 
-                    numeroPasos--;
+                    if(esMovimientoValido(nuevaX, nuevaY)) {
+                        console.log("movimiento válido");
+                        posicionAzul.x=nuevaX;
+                        posicionAzul.y=nuevaY;
 
-                } else if(nombreTurnoJugador == "ROJO") {
-                    if(e.key == "a" || e.key == "A") {
-                        posicionRojo.x--;
                         posicionarJugadores();
+                        numeroPasos--;
+                    } else {
+                        console.log("movimiento no válido");
+                    }                    
+
+                } else if(nombreTurnoJugador === "ROJO") {
+                    let nuevaX=posicionRojo.x;
+                    let nuevaY=posicionRojo.y;
+
+                    if(e.key == "a" || e.key == "A") {
+                        nuevaX--;
                     }
                     if(e.key == "w" || e.key == "W") {
-                        posicionRojo.y--;
-                        posicionarJugadores();
+                        nuevaY--;
                     }
                     if(e.key == "s" || e.key == "S") {
-                        posicionRojo.y++;
-                        posicionarJugadores();
+                        nuevaY++;
                     }
                     if(e.key == "d" || e.key == "D") {
-                        posicionRojo.x++;
-                        posicionarJugadores();
+                        nuevaX++;
                     }
 
-                    numeroPasos--;
+                    if(esMovimientoValido(nuevaX, nuevaY)) {
+                        console.log("movimiento válido");
+                        posicionRojo.x=nuevaX;
+                        posicionRojo.y=nuevaY;
+
+                        posicionarJugadores();
+                        numeroPasos--;
+                    } else {
+                        console.log("movimiento no válido");
+                    }                      
                 }
     
             // MOVER AL MINOTAURO
             } else {
-                if(nombreTurnoJugador = "ROJO") {
+                if(nombreTurnoJugador === "ROJO") {
                     if(e.key == "a" || e.key == "A") {
                         posicionMinotauro.x--;
                         posicionarJugadores();
@@ -143,7 +159,7 @@ window.addEventListener("DOMContentLoaded", function() {
                     numeroPasos--;
 
                 } else {
-                    if(e.key == "ArrowLeft") {
+                    if(e.key === "ArrowLeft") {
                         posicionMinotauro.x--;
                         posicionarJugadores();
                     }
@@ -173,7 +189,7 @@ window.addEventListener("DOMContentLoaded", function() {
 
     // Con este evento se evita que se produzcan problemas al cambiar el tamaño de la ventana, ya que hasta que no se mueve un jugador,  
     // no se coloan las fichas en su lugar correspondiente. Esto lo hace de forma automática
-    window.addEventListener("resize", function() {
+    window.addEventListener("resize", function() {    
         posicionarJugadores();
     });
 
@@ -207,6 +223,16 @@ window.addEventListener("DOMContentLoaded", function() {
         }
 
         posicionarJugadores();
+    }
+
+    // Función para verificar que no se mueva la ficha a un muro
+    function esMovimientoValido(x, y) {
+        // Límites del tablero
+        if(x < 1 || x > tablero.length-2 || y < 1 || y > tablero.length-2) {
+            return false;
+        }
+
+        return true;
     }
 
     function crearTablero(tablero) {
