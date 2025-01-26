@@ -12,9 +12,9 @@
 /* Blur de fondo al activar el menú */
 .div-ajustes-blur {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #0000008e;
+    width: 100vw;
+    height: 100vh;
+    background-color: #00000094;
     z-index: 1000;
     backdrop-filter: blur(4px);
     transition: 0.2s ease;
@@ -26,30 +26,82 @@
     opacity: 1;
 }
 
+
 /**/ 
+/* Marco marrón */
 #div-ajustes {
-    background-color: #F27405;
-    border-radius: 5px;
+    background-color: #7a4418;
+    border-radius: 3px;
+    border: 2px solid #000;
     width: 340px;
     height: 400px;
+    padding: 10px;
     position: absolute;
     z-index: 1500;
     opacity: 0;
     visibility: hidden;
+    overflow: hidden;
     transition: 0.2s ease;
 }
 #div-ajustes.mostrar-menu {
     opacity: 1;
     visibility: visible;
 }
-
-.fa-x {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    cursor: pointer;
-    transform: scaleY(0.9);
-    color: #FFF;
-    font-size: 1.4em;
+/* Div del contenido */
+#div-ajustes > div {
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+    border: 2px solid #000;
+    background-color: #F27405;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 
+
+/* OPCIONES DE AUDIO */
+.divs-audio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:80%;
+    box-shadow: 0px 0px 5px #000;
+}
+.divs-audio > i {
+    width: 30px;
+    height: 30px;
+    
+}
+.divs-audio > div {
+    width: 80%;
+    display: flex;
+}
+.divs-volumen-musica, .divs-volumen-sonido {
+    background-color: grey;
+    width: 100%;
+    display: grid;
+    column-gap: 4px;
+    grid-template-columns: repeat(10, 1fr);
+}
+
+.bajar-M, .bajar-S, .subir-M, .subir-S {
+    color: #FFF;
+    font-weight: bold;
+    background-color: brown;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+.rayida-audio {
+    height: 100%;
+    width: 100%;
+    background-color: cyan;
+}
