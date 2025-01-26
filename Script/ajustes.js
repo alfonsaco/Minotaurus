@@ -29,10 +29,15 @@ window.addEventListener("DOMContentLoaded", function() {
     }); 
 
 
-    // Función de subir y bajar audio
-    // Contadores para el audio y el sonido
+    /* ----------------------- AUDIO -----------------------
+       Función de subir y bajar audio
+       Contadores para el audio y el sonido  
+    */
     let contSonido=10;
     let contMusica=10;
+    let volumenMusica=1;
+    let volumenSonido=1;
+
     const divMusica=document.querySelector(".divs-volumen-musica");
     const divSonido=document.querySelector(".divs-volumen-sonido");
 
@@ -48,12 +53,56 @@ window.addEventListener("DOMContentLoaded", function() {
     inicializarAudio(divMusica, contMusica);
     inicializarAudio(divSonido, contSonido);
 
+
+    // ----------------------- INICIALIZAR SONIDOS -----------------------
+    function reproducirSonido(sonido) {
+        sonido.play();
+    }
+    function cambiarVolumenSonido(nuevoVolumen) {
+        sonidoPlay.volume=1*nuevoVolumen;
+    }
+    function cambiarVolumenMusica(nuevoVolumen) {
+        menuTheme.volume=1*nuevoVolumen;
+    }
+    
+    // Rutas sonidos
+    let sonidoPlay=new Audio("../Audio/lego-breaking.mp3");
+    // Música del menú
+    const menuTheme=new Audio("../Audio/Menu-Theme.mp3");
+    menuTheme.loop=true;
+    menuTheme.play();
+    let volumen=0.8;
+    
+    // Sonidos botones
+    document.querySelector(".play-game").addEventListener("click", function () {
+        reproducirSonido(sonidoPlay);
+
+        // Reducir el audio lentamente, para hacerlo más fluido
+        let reducirAudio=setInterval(() => {
+            if(volumen > 0.05) {
+                volumen-=0.05;
+                menuTheme.volume=volumen;
+            } else {
+                menuTheme.pause();
+                clearInterval(reducirAudio);
+            }
+        }, 100);
+    });
+    document.querySelector(".instrucciones").addEventListener("click", function() {
+        reproducirSonido(sonidoPlay);
+        divIntrucciones.classList.add("aparecer-div");
+    });
+
+    // BOTONES DE SUBIR Y BAJAR VOLUMEN
     document.querySelector(".bajar-M").addEventListener("click", function() {
         if(contMusica > 0) {
             const raya=divMusica.lastElementChild;
 
             divMusica.removeChild(raya);
             contMusica--;
+            volumenMusica-=0.1;
+
+            cambiarVolumenMusica(volumenMusica);
         }
     });
     document.querySelector(".subir-M").addEventListener("click", function() {
@@ -63,6 +112,9 @@ window.addEventListener("DOMContentLoaded", function() {
     
             divMusica.appendChild(raya);
             contMusica++;
+            volumenMusica+=0.1;
+
+            cambiarVolumenMusica(volumenMusica);
         }
     });
     document.querySelector(".bajar-S").addEventListener("click", function() {
@@ -71,6 +123,9 @@ window.addEventListener("DOMContentLoaded", function() {
 
             divSonido.removeChild(raya);
             contSonido--;
+            volumenSonido-=0.1;
+
+            cambiarVolumenSonido(volumenSonido);
         }
     });
     document.querySelector(".subir-S").addEventListener("click", function() {
@@ -80,6 +135,9 @@ window.addEventListener("DOMContentLoaded", function() {
     
             divSonido.appendChild(raya);
             contSonido++;
+            volumenSonido+=0.1;
+
+            cambiarVolumenSonido(volumenSonido);
         }
     });
 });
