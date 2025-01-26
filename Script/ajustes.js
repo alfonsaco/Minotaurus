@@ -71,7 +71,7 @@ window.addEventListener("DOMContentLoaded", function() {
     const menuTheme=new Audio("../Audio/Menu-Theme.mp3");
     menuTheme.loop=true;
     menuTheme.play();
-    let volumen=0.8;
+    let volumen=1;
     
     // Sonidos botones
     document.querySelector(".play-game").addEventListener("click", function () {
