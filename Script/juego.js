@@ -115,8 +115,14 @@ window.addEventListener("DOMContentLoaded", function() {
                         posicionAzul.x=nuevaX;
                         posicionAzul.y=nuevaY;
 
-                        posicionarJugadores();
-                        numeroPasos--;
+                        posicionarJugadores();                        
+
+                        // Se verifica que las teclas que se han pulsado han sido esas, para restar 
+                        // los pasos, ya que de lo contrario, se restarán pasos aunque se hayan pulsado
+                        // teclas incorrectas
+                        if(e.key == "ArrowLeft" || e.key == "ArrowUp" || e.key == "ArrowRight" || e.key == "ArrowDown") {
+                            numeroPasos--;
+                        }     
 
                         if(verificarVictoria(nuevaX, nuevaY)) {
                             console.log("EL JUGADOR AZUL HA GANADO");
@@ -149,7 +155,11 @@ window.addEventListener("DOMContentLoaded", function() {
                         posicionRojo.y=nuevaY;
 
                         posicionarJugadores();
-                        numeroPasos--;
+                        if(e.key == "a" || e.key == "A" || e.key == "w" || e.key == "W" || 
+                            e.key == "s" || e.key == "S" || e.key == "d" || e.key == "D") {
+                                
+                            numeroPasos--;
+                        }
 
                         if(verificarVictoria(nuevaX, nuevaY)) {
                             console.log("EL JUGADOR ROJO HA GANADO");
@@ -165,17 +175,17 @@ window.addEventListener("DOMContentLoaded", function() {
                 if(nombreTurnoJugador === "ROJO") {
                     let nuevaX=posicionMinotauro.x;
                     let nuevaY=posicionMinotauro.y;
-
-                    if(e.key == "a" || e.key == "A") {
+                        
+                    if (e.key == "a" || e.key == "A") {
                         nuevaX--;
                     }
-                    if(e.key == "w" || e.key == "W") {
+                    if (e.key == "w" || e.key == "W") {
                         nuevaY--;
                     }
-                    if(e.key == "s" || e.key == "S") {
+                    if (e.key == "s" || e.key == "S") {
                         nuevaY++;
                     }
-                    if(e.key == "d" || e.key == "D") {
+                    if (e.key == "d" || e.key == "D") {
                         nuevaX++;
                     }
 
@@ -185,7 +195,12 @@ window.addEventListener("DOMContentLoaded", function() {
                         posicionMinotauro.y=nuevaY;
 
                         posicionarJugadores();
-                        numeroPasos--;
+                        if(e.key == "a" || e.key == "A" || e.key == "w" || e.key == "W" || 
+                            e.key == "s" || e.key == "S" || e.key == "d" || e.key == "D") {
+
+                            numeroPasos--;
+                        }
+
                     } else {
                         console.log("movimiento no válido");
                     }       
@@ -212,8 +227,14 @@ window.addEventListener("DOMContentLoaded", function() {
                         posicionMinotauro.x=nuevaX;
                         posicionMinotauro.y=nuevaY;
 
+                        // Se verifica que las teclas que se han pulsado han sido esas, para restar 
+                        // los pasos, ya que de lo contrario, se restarán pasos aunque se hayan pulsado
+                        // teclas incorrectas
+                        if(e.key == "ArrowLeft" || e.key == "ArrowUp" || e.key == "ArrowRight" || e.key == "ArrowDown") {
+                            numeroPasos--;
+                        }     
+
                         posicionarJugadores();
-                        numeroPasos--;
                     } else {
                         console.log("movimiento no válido");
                     }       
