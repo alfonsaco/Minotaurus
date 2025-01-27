@@ -50,15 +50,18 @@ window.addEventListener("DOMContentLoaded", function() {
     turnoJugador(turno);
     crearTablero(tablero);
 
+    /**
+              TIRAR DADO
+     */
     const dado=document.querySelector(".dado");
     // Añadir animación aleatoria al dado
-    dado.addEventListener("click", function() {
+    function tirarDado() {
         if(puedeTirar) {
             turno++;
 
             // Obtenemos una tirada aleatoria para el dado
             turnoJugador(turno);
-            let random=(Math.round(1+Math.random()*5));
+            let random=Math.round(Math.random()*6)+1;
     
             // Quitamos y ponemos el estilo, para repetir la animación
             for (let i=1; i<=6; i++) {
@@ -72,7 +75,17 @@ window.addEventListener("DOMContentLoaded", function() {
             console.log(numeroPasos);
             puedeTirar=false;
         }
+    }
+    
+    dado.addEventListener("click", function() {
+        tirarDado();
     });
+    window.addEventListener("keydown", function(e) {
+        if(e.key == " " || e.key == "Spacebar") {
+            tirarDado();
+        }        
+    });
+
 
     // Agregar movimiento a los jugadores con las teclas
     window.addEventListener("keydown", function(e) {        
