@@ -123,11 +123,12 @@ window.addEventListener("DOMContentLoaded", function() {
                         // teclas incorrectas
                         if(e.key == "ArrowLeft" || e.key == "ArrowUp" || e.key == "ArrowRight" || e.key == "ArrowDown") {
                             numeroPasos--;
+                            pasosJugador();
                         }     
 
                         if(verificarVictoria(nuevaX, nuevaY)) {
-                            console.log("EL JUGADOR AZUL HA GANADO");
-                        }
+                            console.log("EL JUGADOR AZUL HA GANADO");                            
+                        }                        
 
                     } else {
                         console.log("movimiento no válido");
@@ -160,11 +161,12 @@ window.addEventListener("DOMContentLoaded", function() {
                             e.key == "s" || e.key == "S" || e.key == "d" || e.key == "D") {
                                 
                             numeroPasos--;
+                            pasosJugador();
                         }
 
                         if(verificarVictoria(nuevaX, nuevaY)) {
-                            console.log("EL JUGADOR ROJO HA GANADO");
-                        }
+                            console.log("EL JUGADOR ROJO HA GANADO");                            
+                        }                        
 
                     } else {
                         console.log("movimiento no válido");
@@ -200,7 +202,8 @@ window.addEventListener("DOMContentLoaded", function() {
                             e.key == "s" || e.key == "S" || e.key == "d" || e.key == "D") {
 
                             numeroPasos--;
-                        }
+                            pasosJugador();
+                        }                
 
                     } else {
                         console.log("movimiento no válido");
@@ -233,7 +236,8 @@ window.addEventListener("DOMContentLoaded", function() {
                         // teclas incorrectas
                         if(e.key == "ArrowLeft" || e.key == "ArrowUp" || e.key == "ArrowRight" || e.key == "ArrowDown") {
                             numeroPasos--;
-                        }     
+                            pasosJugador();
+                        }                             
 
                         posicionarJugadores();
                     } else {
@@ -440,21 +444,41 @@ window.addEventListener("DOMContentLoaded", function() {
     function cambiarVolumenSonido(nuevoVolumen) {
         sonidoPlay.volume=1 * nuevoVolumen;
         comerFicha.volume=1 * nuevoVolumen;
+        sonidoDado.volume=1 * nuevoVolumen;
+        paso1.volume=1 * nuevoVolumen;
+        paso2.volume=1 * nuevoVolumen;
+        sonidoBotonesAudio.volume=1 * nuevoVolumen;
     }
     function cambiarVolumenMusica(nuevoVolumen) {
         menuTheme.volume=1 * nuevoVolumen;
+        ambiance.volume=1 * nuevoVolumen;
     }
 
     // Rutas sonidos
-    let sonidoPlay=new Audio("../Audio/lego-breaking.mp3");
-    let comerFicha=new Audio("../Audio/biteMinotaurus2.mp3");
-    let sonidoDado=new Audio("../Audio/dado.mp3");
+    const sonidoPlay=new Audio("/Minotaurus/Audio/lego-breaking.mp3");
+    const comerFicha=new Audio("/Minotaurus/Audio/biteMinotaurus.mp3");
+    const sonidoDado=new Audio("/Minotaurus/Audio/dado.mp3");
+    const paso1=new Audio("/Minotaurus/Audio/step1.mp3")
+    const paso2=new Audio("/Minotaurus/Audio/step2.mp3")
+    const parImparPasos=0;
+    const sonidoBotonesAudio=new Audio("/Minotaurus/Audio/volumeChange.mp3");
+    const ambiance=new Audio("/Minotaurus/Audio/gameAmbiance.mp3");
 
-    // Música del menú
-    const menuTheme = new Audio("../Audio/Menu-Theme.mp3");
+    function pasosJugador() {
+        if(parImparPasos%2 == 0) {
+            reproducirSonido(paso1);
+        } else {
+            reproducirSonido(paso2);
+        }
+        parImparPasos++;
+    }
+
+    // Música del menú    
+    const menuTheme = new Audio("/Minotaurus/Audio/Menu-Theme.mp3");
     menuTheme.loop = true;
     menuTheme.play();
     let volumen = 1;
+
 
     // Sonidos botones
     document.querySelector(".play-game").addEventListener("click", function () {
@@ -470,6 +494,10 @@ window.addEventListener("DOMContentLoaded", function() {
                 clearInterval(reducirAudio);
             }
         }, 100);
+
+        setTimeout(() => {
+            reproducirSonido(ambiance);
+        }, 1000);
     });
     document.querySelector(".instrucciones").addEventListener("click", function () {
         reproducirSonido(sonidoPlay);
@@ -485,8 +513,9 @@ window.addEventListener("DOMContentLoaded", function() {
             contMusica--;
             volumenMusica -= 0.1;
 
-            cambiarVolumenMusica(volumenMusica);
+            cambiarVolumenMusica(volumenMusica);        
         }
+        reproducirSonido(sonidoBotonesAudio);
     });
     document.querySelector(".subir-M").addEventListener("click", function () {
         if (contMusica < 10) {
@@ -497,8 +526,9 @@ window.addEventListener("DOMContentLoaded", function() {
             contMusica++;
             volumenMusica += 0.1;
 
-            cambiarVolumenMusica(volumenMusica);
+            cambiarVolumenMusica(volumenMusica);            
         }
+        reproducirSonido(sonidoBotonesAudio);
     });
     document.querySelector(".bajar-S").addEventListener("click", function () {
         if (contSonido > 0) {
@@ -508,8 +538,9 @@ window.addEventListener("DOMContentLoaded", function() {
             contSonido--;
             volumenSonido -= 0.1;
 
-            cambiarVolumenSonido(volumenSonido);
+            cambiarVolumenSonido(volumenSonido);            
         }
+        reproducirSonido(sonidoBotonesAudio);
     });
     document.querySelector(".subir-S").addEventListener("click", function () {
         if (contSonido < 10) {
@@ -520,7 +551,8 @@ window.addEventListener("DOMContentLoaded", function() {
             contSonido++;
             volumenSonido += 0.1;
 
-            cambiarVolumenSonido(volumenSonido);
+            cambiarVolumenSonido(volumenSonido);            
         }
+        reproducirSonido(sonidoBotonesAudio);
     });
 });
